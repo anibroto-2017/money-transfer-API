@@ -1,7 +1,0 @@
-com\revolut\moneytransfer\controller\TransactionControllerTest.class
-com\revolut\moneytransfer\MoneyTransferTestResource.class
-com\revolut\moneytransfer\controller\AccountControllerTest.class
-com\revolut\moneytransfer\service\TransactionServiceTest.class
-com\revolut\moneytransfer\dao\AccountDaoTest.class
-com\revolut\moneytransfer\dao\TransactionDaoTest.class
-com\revolut\moneytransfer\service\AccountServiceTest.class
