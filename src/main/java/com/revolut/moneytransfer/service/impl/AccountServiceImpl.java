@@ -14,12 +14,13 @@ public class AccountServiceImpl implements AccountService {
     private static AccountServiceImpl instance;
     private AccountDao accountDao = AccountDaoImpl.getInstance();
 
-    private AccountServiceImpl(){}
+    private AccountServiceImpl() {
+    }
 
-    public static AccountServiceImpl getInstance(){
-        if(instance == null){
+    public static AccountServiceImpl getInstance() {
+        if (instance == null) {
             synchronized (AccountServiceImpl.class) {
-                if(instance == null) {
+                if (instance == null) {
                     instance = new AccountServiceImpl();
                 }
             }
@@ -29,7 +30,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account createAccount(long accountNumber, String accountHolderFirstName, String accountHolderLastName, BigDecimal debitLimit) throws BadRequestException, DuplicateAccountNumberException {
-        return accountDao.createAccount(accountNumber,accountHolderFirstName,accountHolderLastName,debitLimit);
+        return accountDao.createAccount(accountNumber, accountHolderFirstName, accountHolderLastName, debitLimit);
     }
 
     @Override
@@ -43,7 +44,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void clearAllAccounts(){
+    public void clearAllAccounts() {
         accountDao.clearAllAccounts();
     }
 }

@@ -45,7 +45,7 @@ public class TransactionDaoImpl implements TransactionDao {
         if (accountDao.checkIfAccountNumberExists(sourceAccountNumber)) {
             if (accountDao.checkIfAccountNumberExists(destinationAccountNumber)) {
 
-                if(sourceAccountNumber == destinationAccountNumber) {
+                if (sourceAccountNumber == destinationAccountNumber) {
                     throw new SameAccountException();
                 }
 
@@ -73,15 +73,13 @@ public class TransactionDaoImpl implements TransactionDao {
     public Transaction getTransactionDetails(long transactionId) throws TransactionNotFoundException {
         if (transactionList.get(transactionId) != null) {
             return transactionList.get(transactionId);
-        }
-        else {
+        } else {
             throw new TransactionNotFoundException(transactionId);
         }
     }
 
     @Override
-    public List<TransactionResponse> getTransactionDetailsByAccountNumber(long accountNumber) throws AccountNotFoundException
-    {
+    public List<TransactionResponse> getTransactionDetailsByAccountNumber(long accountNumber) throws AccountNotFoundException {
 
         if (accountDao.checkIfAccountNumberExists(accountNumber)) {
             List<TransactionResponse> transactions = new ArrayList<>();
@@ -105,8 +103,7 @@ public class TransactionDaoImpl implements TransactionDao {
                 transactions.add(transactionResponse);
             }
             return transactions;
-        }
-        else throw new AccountNotFoundException(accountNumber);
+        } else throw new AccountNotFoundException(accountNumber);
     }
 
     @Override

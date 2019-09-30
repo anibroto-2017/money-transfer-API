@@ -29,7 +29,7 @@ public class TransactionDaoTest {
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         accountDao.clearAllAccounts();
         transactionDao.clearTransactions();
     }
@@ -50,13 +50,13 @@ public class TransactionDaoTest {
         Transaction transaction = transactionDao.saveTransaction(MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER,
                 MoneyTransferTestConstants.TEST_DESTINATION_ACCOUNT_NUMBER,
                 MoneyTransferTestConstants.TEST_TRANSFERAMOUNT);
-        assertThat(transaction.getSourceAccountNumber(),is(MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER));
-        assertThat(transaction.getDestinationAccountNumber(),is(MoneyTransferTestConstants.TEST_DESTINATION_ACCOUNT_NUMBER));
-        assertThat(transaction.getTransferAmount(),is(MoneyTransferTestConstants.TEST_TRANSFERAMOUNT));
+        assertThat(transaction.getSourceAccountNumber(), is(MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER));
+        assertThat(transaction.getDestinationAccountNumber(), is(MoneyTransferTestConstants.TEST_DESTINATION_ACCOUNT_NUMBER));
+        assertThat(transaction.getTransferAmount(), is(MoneyTransferTestConstants.TEST_TRANSFERAMOUNT));
     }
 
     @Test
-    public void shouldGetTransactionDetails() throws SameAccountException, DuplicateAccountNumberException,TransactionNotFoundException,
+    public void shouldGetTransactionDetails() throws SameAccountException, DuplicateAccountNumberException, TransactionNotFoundException,
             AccountNotFoundException, DebitLimitExceededException, InsufficientBalanceException, TimedOutException {
 
         accountDao.createAccount(MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER,
@@ -73,13 +73,13 @@ public class TransactionDaoTest {
                 MoneyTransferTestConstants.TEST_TRANSFERAMOUNT);
         Transaction transactionDetails = transactionDao.getTransactionDetails(transaction.getTransactionId());
 
-        assertThat(transactionDetails.getSourceAccountNumber(),is(MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER));
-        assertThat(transactionDetails.getDestinationAccountNumber(),is(MoneyTransferTestConstants.TEST_DESTINATION_ACCOUNT_NUMBER));
-        assertThat(transactionDetails.getTransferAmount(),is(MoneyTransferTestConstants.TEST_TRANSFERAMOUNT));
+        assertThat(transactionDetails.getSourceAccountNumber(), is(MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER));
+        assertThat(transactionDetails.getDestinationAccountNumber(), is(MoneyTransferTestConstants.TEST_DESTINATION_ACCOUNT_NUMBER));
+        assertThat(transactionDetails.getTransferAmount(), is(MoneyTransferTestConstants.TEST_TRANSFERAMOUNT));
     }
 
     @Test
-    public void shouldGetTransactionDetailsByAccountNumber() throws SameAccountException, DuplicateAccountNumberException,TransactionNotFoundException,
+    public void shouldGetTransactionDetailsByAccountNumber() throws SameAccountException, DuplicateAccountNumberException, TransactionNotFoundException,
             AccountNotFoundException, DebitLimitExceededException, InsufficientBalanceException, TimedOutException {
 
         accountDao.createAccount(MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER,
@@ -96,11 +96,11 @@ public class TransactionDaoTest {
                 MoneyTransferTestConstants.TEST_TRANSFERAMOUNT);
         List<TransactionResponse> sourceAccountTransactions = transactionDao.getTransactionDetailsByAccountNumber(MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER);
 
-        assertThat(sourceAccountTransactions.get(0).getToAccountNumber(),is(MoneyTransferTestConstants.TEST_DESTINATION_ACCOUNT_NUMBER));
-        assertThat(sourceAccountTransactions.get(0).getStatus(),is(transaction.getStatus()));
-        assertThat(sourceAccountTransactions.get(0).getAmount(),is(MoneyTransferTestConstants.TEST_TRANSFERAMOUNT));
-        assertThat(sourceAccountTransactions.get(0).getTransactionId(),is(transaction.getTransactionId()));
-        assertThat(sourceAccountTransactions.get(0).getTransactionType(),is(TransactionType.DEBIT));
+        assertThat(sourceAccountTransactions.get(0).getToAccountNumber(), is(MoneyTransferTestConstants.TEST_DESTINATION_ACCOUNT_NUMBER));
+        assertThat(sourceAccountTransactions.get(0).getStatus(), is(transaction.getStatus()));
+        assertThat(sourceAccountTransactions.get(0).getAmount(), is(MoneyTransferTestConstants.TEST_TRANSFERAMOUNT));
+        assertThat(sourceAccountTransactions.get(0).getTransactionId(), is(transaction.getTransactionId()));
+        assertThat(sourceAccountTransactions.get(0).getTransactionType(), is(TransactionType.DEBIT));
     }
 
     @Test(expected = SameAccountException.class)
@@ -116,6 +116,7 @@ public class TransactionDaoTest {
                 MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER,
                 MoneyTransferTestConstants.TEST_TRANSFERAMOUNT);
     }
+
     @Test(expected = AccountNotFoundException.class)
     public void shouldThrowAccountNotFoundExceptionForNonExistentAccountTransfer() throws SameAccountException, DuplicateAccountNumberException,
             AccountNotFoundException, DebitLimitExceededException, InsufficientBalanceException, TimedOutException {
@@ -129,6 +130,7 @@ public class TransactionDaoTest {
                 MoneyTransferTestConstants.TEST_NON_EXISTENT_ACCOUNT_NUMBER,
                 MoneyTransferTestConstants.TEST_TRANSFERAMOUNT);
     }
+
     @Test(expected = DebitLimitExceededException.class)
     public void shouldThrowDebitLimitExceededException() throws SameAccountException, DuplicateAccountNumberException,
             AccountNotFoundException, DebitLimitExceededException, InsufficientBalanceException, TimedOutException {
@@ -147,6 +149,7 @@ public class TransactionDaoTest {
                 MoneyTransferTestConstants.TEST_DEBITLIMIT.add(BigDecimal.TEN));
 
     }
+
     @Test(expected = InsufficientBalanceException.class)
     public void shouldThrowInsufficientBalanceException() throws SameAccountException, DuplicateAccountNumberException,
             AccountNotFoundException, DebitLimitExceededException, InsufficientBalanceException, TimedOutException {
@@ -164,10 +167,12 @@ public class TransactionDaoTest {
                 MoneyTransferTestConstants.TEST_DESTINATION_ACCOUNT_NUMBER,
                 MoneyTransferTestConstants.TEST_EXCESS_TRANSFERAMOUNT);
     }
+
     @Test(expected = TransactionNotFoundException.class)
     public void shouldThrowTransactionNotFoundException() throws TransactionNotFoundException {
         Transaction transactionDetails = transactionDao.getTransactionDetails(TEST_NON_EXISTENT_TRANSACTION_ID);
     }
+
     @Test(expected = AccountNotFoundException.class)
     public void shouldThrowAccountNotFoundException() throws AccountNotFoundException {
         List<TransactionResponse> transactionDetails = transactionDao.getTransactionDetailsByAccountNumber(MoneyTransferTestConstants.TEST_NON_EXISTENT_ACCOUNT_NUMBER);

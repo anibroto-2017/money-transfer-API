@@ -33,7 +33,7 @@ public class TransactionControllerTest {
     @Before
     public void setUp() throws Exception {
         accountService = AccountServiceImpl.getInstance();
-        transactionService= TransactionServiceImpl.getInstance();
+        transactionService = TransactionServiceImpl.getInstance();
     }
 
     @After
@@ -55,8 +55,8 @@ public class TransactionControllerTest {
                 MoneyTransferTestConstants.TEST_DEBITLIMIT);
 
         HttpUriRequest request = new HttpPost(MoneyTransferConstants.TRANSACTION_API_PATH
-                +MoneyTransferConstants.MONEY_TRANSFER_PATH
-                +"?sourceAccountNumber=" + MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER.toString() +
+                + MoneyTransferConstants.MONEY_TRANSFER_PATH
+                + "?sourceAccountNumber=" + MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER.toString() +
                 "&destinationAccountNumber=" + MoneyTransferTestConstants.TEST_DESTINATION_ACCOUNT_NUMBER.toString() +
                 "&money=" + MoneyTransferTestConstants.TEST_TRANSFERAMOUNT.toString());
 
@@ -86,11 +86,12 @@ public class TransactionControllerTest {
                 MoneyTransferTestConstants.TEST_TRANSFERAMOUNT);
 
         HttpUriRequest request = new HttpGet(MoneyTransferConstants.TRANSACTION_API_PATH
-                                    + transaction.getTransactionId());
+                + transaction.getTransactionId());
 
         HttpResponse response = HttpClientBuilder.create().build().execute(request);
         assertEquals(HttpStatus.SC_OK, response.getStatusLine().getStatusCode());
     }
+
     @Test
     public void shouldgetTransactionDetailsByAccountNumber() throws IOException, DuplicateAccountNumberException, AccountNotFoundException, SameAccountException, InsufficientBalanceException, DebitLimitExceededException, TimedOutException {
 
@@ -107,7 +108,7 @@ public class TransactionControllerTest {
                 MoneyTransferTestConstants.TEST_TRANSFERAMOUNT);
 
         HttpUriRequest request = new HttpGet(MoneyTransferConstants.TRANSACTION_API_PATH
-                +MoneyTransferConstants.GET_TRANSACTION_BY_ACCOUNT_PATH
+                + MoneyTransferConstants.GET_TRANSACTION_BY_ACCOUNT_PATH
                 + MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER.toString());
 
         HttpResponse response = HttpClientBuilder.create().build().execute(request);
@@ -127,8 +128,8 @@ public class TransactionControllerTest {
                 MoneyTransferTestConstants.TEST_DEBITLIMIT);
 
         HttpUriRequest request = new HttpPost(MoneyTransferConstants.TRANSACTION_API_PATH
-                +MoneyTransferConstants.MONEY_TRANSFER_PATH
-                +"?sourceAccountNumber=" + MoneyTransferTestConstants.TEST_INVALID_ACCOUNT_NUMBER +
+                + MoneyTransferConstants.MONEY_TRANSFER_PATH
+                + "?sourceAccountNumber=" + MoneyTransferTestConstants.TEST_INVALID_ACCOUNT_NUMBER +
                 "&destinationAccountNumber=" + MoneyTransferTestConstants.TEST_DESTINATION_ACCOUNT_NUMBER.toString() +
                 "&money=" + MoneyTransferTestConstants.TEST_TRANSFERAMOUNT.toString());
 
@@ -150,8 +151,8 @@ public class TransactionControllerTest {
                 MoneyTransferTestConstants.TEST_DEBITLIMIT);
 
         HttpUriRequest request = new HttpPost(MoneyTransferConstants.TRANSACTION_API_PATH
-                +MoneyTransferConstants.MONEY_TRANSFER_PATH
-                +"?sourceAccountNumber=" + MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER.toString() +
+                + MoneyTransferConstants.MONEY_TRANSFER_PATH
+                + "?sourceAccountNumber=" + MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER.toString() +
                 "&destinationAccountNumber=" + MoneyTransferTestConstants.TEST_DESTINATION_ACCOUNT_NUMBER.toString() +
                 "&money=" + MoneyTransferTestConstants.TEST_INVALID_AMOUNT);
 
@@ -159,6 +160,7 @@ public class TransactionControllerTest {
         assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatusLine().getStatusCode());
 
     }
+
     @Test
     public void shouldReturnBadRequestForNullAccountNumber() throws IOException, DuplicateAccountNumberException, AccountNotFoundException {
 
@@ -172,14 +174,15 @@ public class TransactionControllerTest {
                 MoneyTransferTestConstants.TEST_DEBITLIMIT);
 
         HttpUriRequest request = new HttpPost(MoneyTransferConstants.TRANSACTION_API_PATH
-                +MoneyTransferConstants.MONEY_TRANSFER_PATH
-                +"?sourceAccountNumber=" +
+                + MoneyTransferConstants.MONEY_TRANSFER_PATH
+                + "?sourceAccountNumber=" +
                 "&destinationAccountNumber=" + MoneyTransferTestConstants.TEST_DESTINATION_ACCOUNT_NUMBER.toString() +
                 "&money=" + MoneyTransferTestConstants.TEST_TRANSFERAMOUNT.toString());
 
         HttpResponse response = HttpClientBuilder.create().build().execute(request);
         assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatusLine().getStatusCode());
     }
+
     @Test
     public void shouldReturnBadRequestForNullAmount() throws IOException, DuplicateAccountNumberException, AccountNotFoundException {
 
@@ -193,14 +196,15 @@ public class TransactionControllerTest {
                 MoneyTransferTestConstants.TEST_DEBITLIMIT);
 
         HttpUriRequest request = new HttpPost(MoneyTransferConstants.TRANSACTION_API_PATH
-                +MoneyTransferConstants.MONEY_TRANSFER_PATH
-                +"?sourceAccountNumber=" + MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER+
+                + MoneyTransferConstants.MONEY_TRANSFER_PATH
+                + "?sourceAccountNumber=" + MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER +
                 "&destinationAccountNumber=" + MoneyTransferTestConstants.TEST_DESTINATION_ACCOUNT_NUMBER.toString() +
-                "&money=" );
+                "&money=");
 
         HttpResponse response = HttpClientBuilder.create().build().execute(request);
         assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatusLine().getStatusCode());
     }
+
     @Test
     public void shouldReturnBadRequest() throws IOException, DuplicateAccountNumberException, AccountNotFoundException, SameAccountException, InsufficientBalanceException, DebitLimitExceededException, TimedOutException {
 
@@ -222,6 +226,7 @@ public class TransactionControllerTest {
         HttpResponse response = HttpClientBuilder.create().build().execute(request);
         assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatusLine().getStatusCode());
     }
+
     @Test
     public void shouldReturnBadRequestForInvalidAccountNumber() throws IOException, DuplicateAccountNumberException, AccountNotFoundException, SameAccountException, InsufficientBalanceException, DebitLimitExceededException, TimedOutException {
 
@@ -238,12 +243,13 @@ public class TransactionControllerTest {
                 MoneyTransferTestConstants.TEST_TRANSFERAMOUNT);
 
         HttpUriRequest request = new HttpGet(MoneyTransferConstants.TRANSACTION_API_PATH
-                +MoneyTransferConstants.GET_TRANSACTION_BY_ACCOUNT_PATH
+                + MoneyTransferConstants.GET_TRANSACTION_BY_ACCOUNT_PATH
                 + MoneyTransferTestConstants.TEST_INVALID_ACCOUNT_NUMBER);
 
         HttpResponse response = HttpClientBuilder.create().build().execute(request);
         assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatusLine().getStatusCode());
     }
+
     @Test
     public void shouldReturnBadRequestExceptionForInsufficientBalance() throws IOException, DuplicateAccountNumberException, AccountNotFoundException {
 
@@ -257,8 +263,8 @@ public class TransactionControllerTest {
                 MoneyTransferTestConstants.TEST_DEBITLIMIT);
 
         HttpUriRequest request = new HttpPost(MoneyTransferConstants.TRANSACTION_API_PATH
-                +MoneyTransferConstants.MONEY_TRANSFER_PATH
-                +"?sourceAccountNumber=" + MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER.toString() +
+                + MoneyTransferConstants.MONEY_TRANSFER_PATH
+                + "?sourceAccountNumber=" + MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER.toString() +
                 "&destinationAccountNumber=" + MoneyTransferTestConstants.TEST_DESTINATION_ACCOUNT_NUMBER.toString() +
                 "&money=" + MoneyTransferTestConstants.TEST_EXCESS_TRANSFERAMOUNT.toString());
 
@@ -279,14 +285,15 @@ public class TransactionControllerTest {
                 MoneyTransferTestConstants.TEST_DEBITLIMIT);
 
         HttpUriRequest request = new HttpPost(MoneyTransferConstants.TRANSACTION_API_PATH
-                +MoneyTransferConstants.MONEY_TRANSFER_PATH
-                +"?sourceAccountNumber=" + MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER.toString() +
+                + MoneyTransferConstants.MONEY_TRANSFER_PATH
+                + "?sourceAccountNumber=" + MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER.toString() +
                 "&destinationAccountNumber=" + MoneyTransferTestConstants.TEST_DESTINATION_ACCOUNT_NUMBER.toString() +
                 "&money=" + BigDecimal.ZERO.toString());
 
         HttpResponse response = HttpClientBuilder.create().build().execute(request);
         assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatusLine().getStatusCode());
     }
+
     @Test
     public void shouldReturnBadRequestExceptionForSameAccountTransfer() throws IOException, DuplicateAccountNumberException, AccountNotFoundException {
 
@@ -300,8 +307,8 @@ public class TransactionControllerTest {
                 MoneyTransferTestConstants.TEST_DEBITLIMIT);
 
         HttpUriRequest request = new HttpPost(MoneyTransferConstants.TRANSACTION_API_PATH
-                +MoneyTransferConstants.MONEY_TRANSFER_PATH
-                +"?sourceAccountNumber=" + MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER.toString() +
+                + MoneyTransferConstants.MONEY_TRANSFER_PATH
+                + "?sourceAccountNumber=" + MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER.toString() +
                 "&destinationAccountNumber=" + MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER.toString() +
                 "&money=" + MoneyTransferTestConstants.TEST_TRANSFERAMOUNT);
 

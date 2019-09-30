@@ -10,7 +10,10 @@ public interface AccountService {
 
     public Account createAccount(long accountNumber, String accountHolderFirstName, String accountHolderLastName, BigDecimal debitLimit)
             throws BadRequestException, DuplicateAccountNumberException;
+
     public Account getAccountDetails(long accountNumber) throws AccountNotFoundException;
+
     public boolean checkIfAccountNumberExists(long accountNumber);
+
     public void clearAllAccounts();
 }

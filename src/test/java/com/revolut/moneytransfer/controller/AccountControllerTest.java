@@ -42,11 +42,11 @@ public class AccountControllerTest {
     public void shouldCreateAccountForValidData() throws IOException {
 
         HttpUriRequest request = new HttpPost(MoneyTransferConstants.ACCOUNT_API_PATH
-                +MoneyTransferConstants.CREATE_ACCOUNT_PATH
-                +"?accountNumber=" + MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER.toString() +
+                + MoneyTransferConstants.CREATE_ACCOUNT_PATH
+                + "?accountNumber=" + MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER.toString() +
                 "&accountHolderFirstName=" + MoneyTransferTestConstants.TEST_ACCOUNTHOLDERFNAME +
-                "&accountHolderLastName=" + MoneyTransferTestConstants.TEST_ACCOUNTHOLDERLNAME+
-                "&debitLimit="+MoneyTransferTestConstants.TEST_DEBITLIMIT);
+                "&accountHolderLastName=" + MoneyTransferTestConstants.TEST_ACCOUNTHOLDERLNAME +
+                "&debitLimit=" + MoneyTransferTestConstants.TEST_DEBITLIMIT);
 
         HttpResponse response = HttpClientBuilder.create().build().execute(request);
         assertEquals(HttpStatus.SC_OK, response.getStatusLine().getStatusCode());
@@ -71,51 +71,54 @@ public class AccountControllerTest {
     public void shouldReturnBadRequestForInValidData() throws IOException {
 
         HttpUriRequest request = new HttpPost(MoneyTransferConstants.ACCOUNT_API_PATH
-                +MoneyTransferConstants.CREATE_ACCOUNT_PATH
-                +"?accountNumber=" + MoneyTransferTestConstants.TEST_INVALID_ACCOUNT_NUMBER.toString() +
+                + MoneyTransferConstants.CREATE_ACCOUNT_PATH
+                + "?accountNumber=" + MoneyTransferTestConstants.TEST_INVALID_ACCOUNT_NUMBER.toString() +
                 "&accountHolderFirstName=" + MoneyTransferTestConstants.TEST_ACCOUNTHOLDERFNAME +
-                "&accountHolderLastName=" + MoneyTransferTestConstants.TEST_ACCOUNTHOLDERLNAME+
-                "&debitLimit="+MoneyTransferTestConstants.TEST_DEBITLIMIT);
+                "&accountHolderLastName=" + MoneyTransferTestConstants.TEST_ACCOUNTHOLDERLNAME +
+                "&debitLimit=" + MoneyTransferTestConstants.TEST_DEBITLIMIT);
 
         HttpResponse response = HttpClientBuilder.create().build().execute(request);
         assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatusLine().getStatusCode());
     }
+
     @Test
     public void shouldReturnBadRequestForNullorEmptyAccountNumber() throws IOException {
 
         HttpUriRequest request = new HttpPost(MoneyTransferConstants.ACCOUNT_API_PATH
-                +MoneyTransferConstants.CREATE_ACCOUNT_PATH
-                +"?accountNumber=" + "" +
+                + MoneyTransferConstants.CREATE_ACCOUNT_PATH
+                + "?accountNumber=" + "" +
                 "&accountHolderFirstName=" + MoneyTransferTestConstants.TEST_ACCOUNTHOLDERFNAME +
-                "&accountHolderLastName=" + MoneyTransferTestConstants.TEST_ACCOUNTHOLDERLNAME+
-                "&debitLimit="+MoneyTransferTestConstants.TEST_DEBITLIMIT);
+                "&accountHolderLastName=" + MoneyTransferTestConstants.TEST_ACCOUNTHOLDERLNAME +
+                "&debitLimit=" + MoneyTransferTestConstants.TEST_DEBITLIMIT);
 
         HttpResponse response = HttpClientBuilder.create().build().execute(request);
         assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatusLine().getStatusCode());
     }
+
     @Test
     public void shouldReturnBadRequestForExistingAccountNumber() throws IOException {
 
         HttpUriRequest request1 = new HttpPost(MoneyTransferConstants.ACCOUNT_API_PATH
-                +MoneyTransferConstants.CREATE_ACCOUNT_PATH
-                +"?accountNumber=" + MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER +
+                + MoneyTransferConstants.CREATE_ACCOUNT_PATH
+                + "?accountNumber=" + MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER +
                 "&accountHolderFirstName=" + MoneyTransferTestConstants.TEST_ACCOUNTHOLDERFNAME +
-                "&accountHolderLastName=" + MoneyTransferTestConstants.TEST_ACCOUNTHOLDERLNAME+
-                "&debitLimit="+MoneyTransferTestConstants.TEST_DEBITLIMIT);
+                "&accountHolderLastName=" + MoneyTransferTestConstants.TEST_ACCOUNTHOLDERLNAME +
+                "&debitLimit=" + MoneyTransferTestConstants.TEST_DEBITLIMIT);
 
         HttpResponse response = HttpClientBuilder.create().build().execute(request1);
         assertEquals(HttpStatus.SC_OK, response.getStatusLine().getStatusCode());
 
         HttpUriRequest request2 = new HttpPost(MoneyTransferConstants.ACCOUNT_API_PATH
-                +MoneyTransferConstants.CREATE_ACCOUNT_PATH
-                +"?accountNumber=" + MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER +
+                + MoneyTransferConstants.CREATE_ACCOUNT_PATH
+                + "?accountNumber=" + MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER +
                 "&accountHolderFirstName=" + MoneyTransferTestConstants.TEST_ACCOUNTHOLDERFNAME +
-                "&accountHolderLastName=" + MoneyTransferTestConstants.TEST_ACCOUNTHOLDERLNAME+
-                "&debitLimit="+MoneyTransferTestConstants.TEST_DEBITLIMIT);
+                "&accountHolderLastName=" + MoneyTransferTestConstants.TEST_ACCOUNTHOLDERLNAME +
+                "&debitLimit=" + MoneyTransferTestConstants.TEST_DEBITLIMIT);
 
         HttpResponse response2 = HttpClientBuilder.create().build().execute(request2);
         assertEquals(HttpStatus.SC_BAD_REQUEST, response2.getStatusLine().getStatusCode());
     }
+
     @Test
     public void shouldReturnBadRequestForInValidAccountNumber() throws IOException, DuplicateAccountNumberException {
 

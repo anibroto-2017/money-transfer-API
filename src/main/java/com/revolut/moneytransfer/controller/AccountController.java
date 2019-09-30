@@ -23,17 +23,17 @@ public class AccountController {
     @POST
     @Path("/createAccount")
     public Response createAccount(@QueryParam("accountNumber") String accountNumber,
-                           @QueryParam("accountHolderFirstName") String accountHolderFname,
-                           @QueryParam("accountHolderLastName") String accountHolderLname,
-                           @QueryParam("debitLimit") String debitLimit
-                           ) throws BadRequestException {
+                                  @QueryParam("accountHolderFirstName") String accountHolderFname,
+                                  @QueryParam("accountHolderLastName") String accountHolderLname,
+                                  @QueryParam("debitLimit") String debitLimit
+    ) throws BadRequestException {
         BigDecimal debitLimitNumeric;
         long accountNumberNumeric;
 
         try {
-            ValidationUtil.validateAccountInput(accountNumber,accountHolderFname,accountHolderLname,debitLimit);
+            ValidationUtil.validateAccountInput(accountNumber, accountHolderFname, accountHolderLname, debitLimit);
             debitLimitNumeric = BigDecimal.valueOf(Long.parseLong(debitLimit));
-            accountNumberNumeric= Long.valueOf(accountNumber);
+            accountNumberNumeric = Long.valueOf(accountNumber);
 
             Account account = accountService.createAccount(accountNumberNumeric, accountHolderFname, accountHolderLname, debitLimitNumeric);
             return Response.status(Response.Status.OK).entity(gson.toJson(account)).build();
@@ -50,8 +50,8 @@ public class AccountController {
         long accountNumberNumeric;
         Account account;
         try {
-        ValidationUtil.validateAccountNumber(accountNumber);
-            accountNumberNumeric= Long.valueOf(accountNumber);
+            ValidationUtil.validateAccountNumber(accountNumber);
+            accountNumberNumeric = Long.valueOf(accountNumber);
             account = accountService.getAccountDetails(accountNumberNumeric);
 
             return Response.status(Response.Status.OK)

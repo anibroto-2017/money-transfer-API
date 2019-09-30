@@ -14,8 +14,8 @@ public class Transaction {
         this.sourceAccountNumber = sourceAccountNumber;
         this.destinationAccountNumber = destinationAccountNumber;
         this.transferAmount = transferAmount;
-        this.transactionId = createTransactionID(sourceAccountNumber,destinationAccountNumber);
-        this.status=TransactionStatus.NEW;
+        this.transactionId = createTransactionID(sourceAccountNumber, destinationAccountNumber);
+        this.status = TransactionStatus.NEW;
     }
 
     public long getSourceAccountNumber() {

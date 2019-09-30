@@ -25,7 +25,7 @@ public class AccountServiceTest {
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         accountService.clearAllAccounts();
     }
 
@@ -37,11 +37,11 @@ public class AccountServiceTest {
                 MoneyTransferTestConstants.TEST_ACCOUNTHOLDERLNAME,
                 MoneyTransferTestConstants.TEST_DEBITLIMIT);
 
-        assertThat(account.getAccountNumber(),is(MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER));
-        assertThat(account.getAccountHolderFirstName(),is(MoneyTransferTestConstants.TEST_ACCOUNTHOLDERFNAME));
-        assertThat(account.getAccountHolderLastName(),is(MoneyTransferTestConstants.TEST_ACCOUNTHOLDERLNAME));
-        assertThat(account.getDebitLimit(),is(MoneyTransferTestConstants.TEST_DEBITLIMIT));
-        assertThat(account.getAccountBalance(),is(BigDecimal.valueOf(MoneyTransferConstants.INITIAL_BALANCE)));
+        assertThat(account.getAccountNumber(), is(MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER));
+        assertThat(account.getAccountHolderFirstName(), is(MoneyTransferTestConstants.TEST_ACCOUNTHOLDERFNAME));
+        assertThat(account.getAccountHolderLastName(), is(MoneyTransferTestConstants.TEST_ACCOUNTHOLDERLNAME));
+        assertThat(account.getDebitLimit(), is(MoneyTransferTestConstants.TEST_DEBITLIMIT));
+        assertThat(account.getAccountBalance(), is(BigDecimal.valueOf(MoneyTransferConstants.INITIAL_BALANCE)));
     }
 
     @Test
@@ -53,23 +53,23 @@ public class AccountServiceTest {
                 MoneyTransferTestConstants.TEST_DEBITLIMIT);
         Account accountDetails = accountService.getAccountDetails(MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER);
 
-        assertThat(accountDetails.getAccountNumber(),is(MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER));
-        assertThat(accountDetails.getAccountHolderFirstName(),is(MoneyTransferTestConstants.TEST_ACCOUNTHOLDERFNAME));
-        assertThat(accountDetails.getAccountHolderLastName(),is(MoneyTransferTestConstants.TEST_ACCOUNTHOLDERLNAME));
-        assertThat(accountDetails.getDebitLimit(),is(MoneyTransferTestConstants.TEST_DEBITLIMIT));
-        assertThat(accountDetails.getAccountBalance(),is(BigDecimal.valueOf(MoneyTransferConstants.INITIAL_BALANCE)));
+        assertThat(accountDetails.getAccountNumber(), is(MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER));
+        assertThat(accountDetails.getAccountHolderFirstName(), is(MoneyTransferTestConstants.TEST_ACCOUNTHOLDERFNAME));
+        assertThat(accountDetails.getAccountHolderLastName(), is(MoneyTransferTestConstants.TEST_ACCOUNTHOLDERLNAME));
+        assertThat(accountDetails.getDebitLimit(), is(MoneyTransferTestConstants.TEST_DEBITLIMIT));
+        assertThat(accountDetails.getAccountBalance(), is(BigDecimal.valueOf(MoneyTransferConstants.INITIAL_BALANCE)));
     }
 
     @Test
-    public void shouldCheckAccountNumberExists() throws DuplicateAccountNumberException,AccountNotFoundException {
+    public void shouldCheckAccountNumberExists() throws DuplicateAccountNumberException, AccountNotFoundException {
 
         accountService.createAccount(MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER,
                 MoneyTransferTestConstants.TEST_ACCOUNTHOLDERFNAME,
                 MoneyTransferTestConstants.TEST_ACCOUNTHOLDERLNAME,
                 MoneyTransferTestConstants.TEST_DEBITLIMIT);
 
-        assertThat(accountService.checkIfAccountNumberExists(MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER),is(true));
-        assertThat(accountService.checkIfAccountNumberExists(MoneyTransferTestConstants.TEST_DESTINATION_ACCOUNT_NUMBER),is(false));
+        assertThat(accountService.checkIfAccountNumberExists(MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER), is(true));
+        assertThat(accountService.checkIfAccountNumberExists(MoneyTransferTestConstants.TEST_DESTINATION_ACCOUNT_NUMBER), is(false));
     }
 
     @Test(expected = DuplicateAccountNumberException.class)
@@ -85,8 +85,9 @@ public class AccountServiceTest {
                 MoneyTransferTestConstants.TEST_DEBITLIMIT);
 
     }
+
     @Test(expected = AccountNotFoundException.class)
-    public void shouldThrowAccountNotFoundException() throws DuplicateAccountNumberException,AccountNotFoundException {
+    public void shouldThrowAccountNotFoundException() throws DuplicateAccountNumberException, AccountNotFoundException {
 
         accountService.createAccount(MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER,
                 MoneyTransferTestConstants.TEST_ACCOUNTHOLDERFNAME,
@@ -94,6 +95,7 @@ public class AccountServiceTest {
                 MoneyTransferTestConstants.TEST_DEBITLIMIT);
         accountService.getAccountDetails(MoneyTransferTestConstants.TEST_NON_EXISTENT_ACCOUNT_NUMBER);
     }
+
     @Test
     public void shouldClearAccountList() throws DuplicateAccountNumberException {
 
@@ -101,9 +103,9 @@ public class AccountServiceTest {
                 MoneyTransferTestConstants.TEST_ACCOUNTHOLDERFNAME,
                 MoneyTransferTestConstants.TEST_ACCOUNTHOLDERLNAME,
                 MoneyTransferTestConstants.TEST_DEBITLIMIT);
-        assertThat(accountService.checkIfAccountNumberExists(MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER),is(true));
+        assertThat(accountService.checkIfAccountNumberExists(MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER), is(true));
 
         accountService.clearAllAccounts();
-        assertThat(accountService.checkIfAccountNumberExists(MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER),is(false));
+        assertThat(accountService.checkIfAccountNumberExists(MoneyTransferTestConstants.TEST_SOURCE_ACCOUNT_NUMBER), is(false));
     }
 }

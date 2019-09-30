@@ -9,8 +9,11 @@ import java.util.List;
 
 public interface TransactionService {
     public Transaction saveTransaction(long sourceAccountNumber, long destinationAccountNumber, BigDecimal money) throws SameAccountException,
-    AccountNotFoundException, DebitLimitExceededException, InsufficientBalanceException, TimedOutException;
+            AccountNotFoundException, DebitLimitExceededException, InsufficientBalanceException, TimedOutException;
+
     public Transaction getTransactionDetails(long transactionId) throws TransactionNotFoundException;
+
     public List<TransactionResponse> getTransactionDetailsByAccountNumber(long accountNumber) throws AccountNotFoundException;
+
     public void clearTransactions();
 }

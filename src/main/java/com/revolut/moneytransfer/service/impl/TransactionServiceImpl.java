@@ -15,24 +15,25 @@ public class TransactionServiceImpl implements TransactionService {
     private static TransactionServiceImpl instance;
     private TransactionDao transactionDao = TransactionDaoImpl.getInstance();
 
-    private TransactionServiceImpl(){}
+    private TransactionServiceImpl() {
+    }
 
-    public static TransactionServiceImpl getInstance(){
-        if(instance == null){
+    public static TransactionServiceImpl getInstance() {
+        if (instance == null) {
             synchronized (TransactionServiceImpl.class) {
-                if(instance == null) {
+                if (instance == null) {
                     instance = new TransactionServiceImpl();
                 }
             }
         }
         return instance;
     }
+
     @Override
     public Transaction saveTransaction(long sourceAccountNumber, long destinationAccountNumber, BigDecimal money)
             throws SameAccountException,
-            AccountNotFoundException, DebitLimitExceededException, InsufficientBalanceException, TimedOutException
-    {
-        return transactionDao.saveTransaction(sourceAccountNumber,destinationAccountNumber,money);
+            AccountNotFoundException, DebitLimitExceededException, InsufficientBalanceException, TimedOutException {
+        return transactionDao.saveTransaction(sourceAccountNumber, destinationAccountNumber, money);
     }
 
     @Override

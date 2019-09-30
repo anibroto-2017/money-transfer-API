@@ -15,12 +15,14 @@ public class AccountDaoImpl implements AccountDao {
     private final ConcurrentMap<Long, Account> accountList = new ConcurrentHashMap<>();
 
     private static AccountDaoImpl instance;
-    private AccountDaoImpl(){}
 
-    public static AccountDaoImpl getInstance(){
-        if(instance == null){
+    private AccountDaoImpl() {
+    }
+
+    public static AccountDaoImpl getInstance() {
+        if (instance == null) {
             synchronized (AccountDaoImpl.class) {
-                if(instance == null) {
+                if (instance == null) {
                     instance = new AccountDaoImpl();
                 }
             }
@@ -30,22 +32,20 @@ public class AccountDaoImpl implements AccountDao {
 
     @Override
     public Account createAccount(long accountNumber, String accountHolderFirstName, String accountHolderLastName, BigDecimal debitLimit)
-        throws DuplicateAccountNumberException{
+            throws DuplicateAccountNumberException {
 
-        if(!checkIfAccountNumberExists(accountNumber)) {
-            Account newAccount = new Account(accountNumber,accountHolderFirstName,accountHolderLastName,debitLimit);
-            accountList.put(accountNumber,newAccount);
+        if (!checkIfAccountNumberExists(accountNumber)) {
+            Account newAccount = new Account(accountNumber, accountHolderFirstName, accountHolderLastName, debitLimit);
+            accountList.put(accountNumber, newAccount);
             return newAccount;
-        }
-        else throw new DuplicateAccountNumberException(accountNumber);
+        } else throw new DuplicateAccountNumberException(accountNumber);
     }
 
     @Override
     public Account getAccountDetails(long accountNumber) throws AccountNotFoundException {
-        if(checkIfAccountNumberExists(accountNumber)) {
+        if (checkIfAccountNumberExists(accountNumber)) {
             return accountList.get(accountNumber);
-        }
-        else throw new AccountNotFoundException(accountNumber);
+        } else throw new AccountNotFoundException(accountNumber);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class AccountDaoImpl implements AccountDao {
 
 
     @Override
-    public void clearAllAccounts(){
+    public void clearAllAccounts() {
         accountList.clear();
     }
 }

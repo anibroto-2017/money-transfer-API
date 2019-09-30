@@ -25,15 +25,15 @@ public class MoneyTransferApplication {
         }
     }
 
-    public static void initServer(){
-        if(server == null){
+    public static void initServer() {
+        if (server == null) {
             synchronized (MoneyTransferApplication.class) {
-                if(server == null) {
+                if (server == null) {
                     QueuedThreadPool threadPool = new QueuedThreadPool(200, 10, 180);
                     server = new Server(threadPool);
                     ServerConnector connector = new ServerConnector(server);
                     connector.setPort(MoneyTransferConstants.SERVER_PORT);
-                    server.setConnectors(new Connector[] { connector });
+                    server.setConnectors(new Connector[]{connector});
                     ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
                     context.setContextPath("/");
                     server.setHandler(context);
