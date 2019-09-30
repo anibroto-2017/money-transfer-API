@@ -22,7 +22,6 @@ Sample Response: {
                     ` "accountNumber": 112233,
                      "accountHolderFirstName": "Sample",
                      "accountHolderLastName": "User1",
-                     "accountStatus": "ACTIVE",
                      "accountBalance": 100,
                      "debitLimit": 100,
                      "INITIAL_BALANCE": 100`
@@ -40,7 +39,6 @@ Sample Response: `{
                      "accountNumber": 112233,
                      "accountHolderFirstName": "Sample",
                      "accountHolderLastName": "User1",
-                     "accountStatus": "ACTIVE",
                      "accountBalance": 100,
                      "debitLimit": 100,
                      "INITIAL_BALANCE": 100
