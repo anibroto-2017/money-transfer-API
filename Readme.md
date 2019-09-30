@@ -4,7 +4,7 @@ The application has 5 endpoints.
 
 ###### Account:
 
-Create Account : 
+**Create Account** : 
 Create a new account with the following 4 parameters
 
 Path: /account/createAccount
@@ -28,7 +28,7 @@ Sample Response: {
                      "INITIAL_BALANCE": 100`
                  }
 
-Get Account Details: Get the account details of an existing account
+**Get Account Details**: Get the account details of an existing account
 
 Path: account/{account number}
 
@@ -48,7 +48,7 @@ Sample Response: `{
 
 **Transaction**
 
-Transfer Amount :
+**Transfer Amount** :
 Transfer a positive amount from a source account to a destination account
 
 Path: /transaction/transferMoney
@@ -68,7 +68,7 @@ Sample Response: `{
                      "status": "SUCCESSFULL"
                  }`
 
-Get Transaction Details: 
+**Get Transaction Details**: 
 
 Get the transaction id of an existing transaction
 
@@ -87,7 +87,9 @@ Sample Response: `{
                  }`
 
 
-Get All transaction Details for an account number: Get the list of transactions made from or to an account
+**Get All transaction Details for an account number**: 
+
+Get the list of transactions made from or to an account
 
 Path:/transaction/account/{account number}
 
