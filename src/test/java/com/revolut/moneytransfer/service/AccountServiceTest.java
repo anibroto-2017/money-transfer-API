@@ -5,7 +5,6 @@ import com.revolut.moneytransfer.Exception.DuplicateAccountNumberException;
 import com.revolut.moneytransfer.constant.MoneyTransferConstants;
 import com.revolut.moneytransfer.constant.MoneyTransferTestConstants;
 import com.revolut.moneytransfer.model.Account;
-import com.revolut.moneytransfer.model.AccountStatus;
 import com.revolut.moneytransfer.service.impl.AccountServiceImpl;
 import org.junit.After;
 import org.junit.Before;

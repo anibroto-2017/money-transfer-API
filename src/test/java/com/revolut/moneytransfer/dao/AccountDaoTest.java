@@ -5,8 +5,6 @@ import com.revolut.moneytransfer.constant.MoneyTransferConstants;
 import com.revolut.moneytransfer.constant.MoneyTransferTestConstants;
 import com.revolut.moneytransfer.dao.impl.AccountDaoImpl;
 import com.revolut.moneytransfer.model.Account;
-import com.revolut.moneytransfer.model.AccountStatus;
-import com.revolut.moneytransfer.model.Transaction;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

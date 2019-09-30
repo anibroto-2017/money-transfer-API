@@ -1,30 +1,42 @@
-Money Transfer API
+# **Money Transfer API**
 
 The application has 5 endpoints.
 
-Account:
-1.Create Account : Create a new account with the following 4 parameters
+###### Account:
+
+Create Account : 
+Create a new account with the following 4 parameters
+
 Path: /account/createAccount
-Parameters:	account number
+
+Parameters:	
+
+                    account number
 			account holder first name
 			account holder last name
 			debit limit
+
 Sample Request: http://localhost:8080/account/createAccount?accountNumber=112233&accountHolderFirstName=Sample&accountHolderLastName=User1&debitLimit=100
+
 Sample Response: {
-                     "accountNumber": 112233,
+                    ` "accountNumber": 112233,
                      "accountHolderFirstName": "Sample",
                      "accountHolderLastName": "User1",
                      "accountStatus": "ACTIVE",
                      "accountBalance": 100,
                      "debitLimit": 100,
-                     "INITIAL_BALANCE": 100
+                     "INITIAL_BALANCE": 100`
                  }
 
-2. Get Account Details: Get the account details of an existing account
+Get Account Details: Get the account details of an existing account
+
 Path: account/{account number}
+
 Parameters: account number
+
 Sample Request: http://localhost:8080/account/112233
-Sample Response: {
+
+Sample Response: `{
                      "accountNumber": 112233,
                      "accountHolderFirstName": "Sample",
                      "accountHolderLastName": "User1",
@@ -32,40 +44,58 @@ Sample Response: {
                      "accountBalance": 100,
                      "debitLimit": 100,
                      "INITIAL_BALANCE": 100
-                 }
+                 }`
 
-Transaction
-1. Transfer Amount : Transfer a positive amount from a source account to a destination account
+**Transaction**
+
+Transfer Amount :
+Transfer a positive amount from a source account to a destination account
+
 Path: /transaction/transferMoney
-Parameters: sourceAccountNumber
+
+Parameters: `sourceAccountNumber
 			destinationAccountNumber
 			Amount
+`
+
 Sample Request: http://localhost:8080/transaction/transferMoney?sourceAccountNumber=112233&destinationAccountNumber=445566&money=25
-Sample Response: {
+
+Sample Response: `{
                      "sourceAccountNumber": 112233,
                      "destinationAccountNumber": 445566,
                      "transferAmount": 25,
                      "transactionId": 1569865631294,
                      "status": "SUCCESSFULL"
-                 }
+                 }`
 
-2. Get Transaction Details: Get the transaction id of an existing transaction
+Get Transaction Details: 
+
+Get the transaction id of an existing transaction
+
 Path:/transaction/{transaction Id}
+
 Parameters: transaction id
+
 Sample Request: http://localhost:8080/transaction/1569865631294
-Sample Response: {
+
+Sample Response: `{
                      "sourceAccountNumber": 112233,
                      "destinationAccountNumber": 445566,
                      "transferAmount": 25,
                      "transactionId": 1569865631294,
                      "status": "SUCCESSFUL"
-                 }
+                 }`
 
-3. Get All transaction Details for an account number: Get the list of transactions made from or to an account
+
+Get All transaction Details for an account number: Get the list of transactions made from or to an account
+
 Path:/transaction/account/{account number}
+
 Parameters: account number
+
 Sample Request: http://localhost:8080/transaction/account/445566
-Sample Response: [
+
+Sample Response: `[
                      {
                          "toAccountNumber": 112233,
                          "transactionType": "CREDIT",
@@ -74,7 +104,7 @@ Sample Response: [
                          "status": "SUCCESSFULL"
                      }
                  ]
-
+`
 Technologies used:
 For simplicity, not any heavy framework has been used.
 1. Java 11
